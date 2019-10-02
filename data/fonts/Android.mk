@@ -89,8 +89,11 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := fonts.xml
 LOCAL_MODULE_CLASS := ETC
+ifneq ($(filter true,$(EXCLUDE_SERIF_FONTS) $(SMALLER_FONT_FOOTPRINT)),)
+LOCAL_PREBUILT_MODULE_FILE := frameworks/base/data/fonts/fonts_no_serif.xml
+else
 LOCAL_PREBUILT_MODULE_FILE := frameworks/base/data/fonts/fonts.xml
-
+endif
 include $(BUILD_PREBUILT)
 
 # Run sanity tests on fonts on checkbuild
